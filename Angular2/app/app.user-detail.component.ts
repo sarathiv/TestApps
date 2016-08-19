@@ -10,6 +10,6 @@ import { User } from './user';
   `
 })
 export class UserDetailComponent {
-  @Input()
+ @Input()
   user: User;
 }

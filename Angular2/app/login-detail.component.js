@@ -10,21 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var user_1 = require('./user');
-var UserDetailComponent = (function () {
-    function UserDetailComponent() {
+var LoginDetailComponent = (function () {
+    function LoginDetailComponent() {
+        this.user = new user_1.User();
+        this.user.state = "Karnataka";
+        this.user.country = "India";
     }
+    LoginDetailComponent.prototype.login = function () {
+        alert(JSON.stringify(this.user));
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', user_1.User)
-    ], UserDetailComponent.prototype, "user", void 0);
-    UserDetailComponent = __decorate([
+    ], LoginDetailComponent.prototype, "user", void 0);
+    LoginDetailComponent = __decorate([
         core_1.Component({
-            selector: 'my-user-detail',
-            template: "\n    <div *ngIf=\"user\">\n      <h2>{{user.firstname}}  {{user.lastname}} details!</h2>\n      <div><label>email: </label>{{user.email}}</div>\n    </div>\n  "
+            selector: 'my-login-detail',
+            templateUrl: "./app/login-detail.component.html"
         }), 
         __metadata('design:paramtypes', [])
-    ], UserDetailComponent);
-    return UserDetailComponent;
+    ], LoginDetailComponent);
+    return LoginDetailComponent;
 }());
-exports.UserDetailComponent = UserDetailComponent;
-//# sourceMappingURL=app.user-detail.component.js.map
+exports.LoginDetailComponent = LoginDetailComponent;
+//# sourceMappingURL=login-detail.component.js.map
