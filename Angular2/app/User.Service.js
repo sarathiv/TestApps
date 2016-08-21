@@ -9,19 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//import * as firebase from 'firebase';
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = "test t";
+var FireBase_Service_1 = require('./FireBase.Service');
+var UserService = (function () {
+    function UserService(fireservice) {
+        this.fireservice = fireservice;
+        this.users = fireservice.ref("users");
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: "<my-landing>header Loading </my-landing>\n  "
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    UserService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [FireBase_Service_1.FireBaseService])
+    ], UserService);
+    return UserService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.UserService = UserService;
+//# sourceMappingURL=User.Service.js.map

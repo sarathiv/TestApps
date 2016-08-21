@@ -9,19 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//import * as firebase from 'firebase';
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = "test t";
+var LandingComponent = (function () {
+    function LandingComponent() {
     }
-    AppComponent = __decorate([
+    LandingComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            template: "<my-landing>header Loading </my-landing>\n  "
+            selector: 'my-landing',
+            templateUrl: './app/header.html'
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], LandingComponent);
+    return LandingComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.LandingComponent = LandingComponent;
+//# sourceMappingURL=app.landing.component.js.map

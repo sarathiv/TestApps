@@ -1,0 +1,5 @@
+<div *ngIf="user">
+  <h2>{{user.firstname}}  {{user.lastname}} details!</h2>
+  <div><label>email: </label>{{user.email}}</div>
+  <button (click)="goBack()">Back</button>
+</div>

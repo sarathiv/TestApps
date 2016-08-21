@@ -9,15 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var user_1 = require('./user');
 var LoginDetailComponent = (function () {
-    function LoginDetailComponent() {
+    function LoginDetailComponent(router) {
+        this.router = router;
         this.user = new user_1.User();
         this.user.state = "Karnataka";
         this.user.country = "India";
     }
     LoginDetailComponent.prototype.login = function () {
         alert(JSON.stringify(this.user));
+        var link = ['/user', this.user.email];
+        alert(link);
+        this.router.navigate(link);
     };
     __decorate([
         core_1.Input(), 
@@ -28,7 +33,7 @@ var LoginDetailComponent = (function () {
             selector: 'my-login-detail',
             templateUrl: "./app/login-detail.component.html"
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], LoginDetailComponent);
     return LoginDetailComponent;
 }());

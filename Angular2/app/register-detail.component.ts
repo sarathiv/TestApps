@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from './user';
 @Component({
-  selector: 'my-login-detail',
-  templateUrl: `./app/login-detail.component.html`
+  selector: 'my-register-detail',
+  templateUrl: `./app/register-detail.component.html`
 })
-export class LoginDetailComponent {
+export class RegisterDetailComponent {
   @Input()
   user: User;
 
@@ -15,7 +15,8 @@ export class LoginDetailComponent {
     this.user.state = "Karnataka";
     this.user.country = "India";
   }
-  login()
+
+  register()
   {
     alert(JSON.stringify(this.user));
     let link = ['/user', this.user.email];

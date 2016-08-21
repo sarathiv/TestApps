@@ -6,4 +6,6 @@ export class User {
   state: string;
   country: string;
   mobile:string;
+  isAdministrator: boolean;
+  isLoggedIn: boolean;
 }

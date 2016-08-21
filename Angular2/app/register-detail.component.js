@@ -11,35 +11,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var user_1 = require('./user');
-var UserDetailComponent = (function () {
-    function UserDetailComponent(route) {
-        this.route = route;
+var RegisterDetailComponent = (function () {
+    function RegisterDetailComponent(router) {
+        this.router = router;
+        this.user = new user_1.User();
+        this.user.state = "Karnataka";
+        this.user.country = "India";
     }
-    UserDetailComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.route.params.forEach(function (params) {
-            var email = params['email'];
-            //  this.heroService.getHero(id)
-            //  .then(hero => this.hero = hero);
-            _this.user = new user_1.User();
-            _this.user.email = email;
-        });
-    };
-    UserDetailComponent.prototype.goBack = function () {
-        window.history.back();
+    RegisterDetailComponent.prototype.register = function () {
+        alert(JSON.stringify(this.user));
+        var link = ['/user', this.user.email];
+        alert(link);
+        this.router.navigate(link);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', user_1.User)
-    ], UserDetailComponent.prototype, "user", void 0);
-    UserDetailComponent = __decorate([
+    ], RegisterDetailComponent.prototype, "user", void 0);
+    RegisterDetailComponent = __decorate([
         core_1.Component({
-            selector: 'my-user-detail',
-            templateUrl: 'app/user-detail.component.html'
+            selector: 'my-register-detail',
+            templateUrl: "./app/register-detail.component.html"
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute])
-    ], UserDetailComponent);
-    return UserDetailComponent;
+        __metadata('design:paramtypes', [router_1.Router])
+    ], RegisterDetailComponent);
+    return RegisterDetailComponent;
 }());
-exports.UserDetailComponent = UserDetailComponent;
-//# sourceMappingURL=app.user-detail.component.js.map
+exports.RegisterDetailComponent = RegisterDetailComponent;
+//# sourceMappingURL=register-detail.component.js.map
