@@ -1,19 +1,10 @@
-import { Injectable,OnInit  } from '@angular/core';
-import * as firebase from 'firebase';
+import { Injectable } from '@angular/core';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 @Injectable()
-export class FireBaseService implements OnInit  {
-  ngOnInit() {
-  const  config = {
-    apiKey: "AIzaSyAo9jAlohHV2JucGtgV7r7BB1CPquJIQhg",
-    authDomain: "testapp-2493a.firebaseapp.com",
-    databaseURL: "https://testapp-2493a.firebaseio.com",
-    storageBucket: "testapp-2493a.appspot.com",
-  };
-      firebase.initializeApp(config);
+export class FireBaseService {
+ constructor(private af: AngularFire) {
   }
-
   ref(refto:string): any {
-       return firebase.database().ref(refto);
+       return this.af.database.list(refto);
     }
-
 }

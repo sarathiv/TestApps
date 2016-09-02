@@ -11,21 +11,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var user_1 = require('./user');
+var angularfire2_1 = require('angularfire2');
 var UserDetailComponent = (function () {
-    function UserDetailComponent(route) {
+    function UserDetailComponent(route, af) {
         this.route = route;
+        this.af = af;
     }
     UserDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.forEach(function (params) {
             var email = params['email'];
-            //  this.heroService.getHero(id)
-            //  .then(hero => this.hero = hero);
+            alert(email);
+            //this.userservice.getUser(email)
+            //	  .then(user => this.user = user);
+            //alert(this.user);
             _this.user = new user_1.User();
             _this.user.email = email;
         });
     };
     UserDetailComponent.prototype.goBack = function () {
+        this.af.auth.logout();
         window.history.back();
     };
     __decorate([
@@ -37,7 +42,7 @@ var UserDetailComponent = (function () {
             selector: 'my-user-detail',
             templateUrl: 'app/user-detail.component.html'
         }), 
-        __metadata('design:paramtypes', [router_1.ActivatedRoute])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, angularfire2_1.AngularFire])
     ], UserDetailComponent);
     return UserDetailComponent;
 }());

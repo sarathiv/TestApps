@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var user_1 = require('./user');
+var User_Service_1 = require('./User.Service');
 var RegisterDetailComponent = (function () {
-    function RegisterDetailComponent(router) {
+    function RegisterDetailComponent(router, userservice) {
         this.router = router;
+        this.userservice = userservice;
         this.user = new user_1.User();
         this.user.state = "Karnataka";
         this.user.country = "India";
@@ -21,8 +23,14 @@ var RegisterDetailComponent = (function () {
     RegisterDetailComponent.prototype.register = function () {
         alert(JSON.stringify(this.user));
         var link = ['/user', this.user.email];
-        alert(link);
-        this.router.navigate(link);
+        if (this.userservice.addUser(this.user)) {
+            alert("true");
+            alert(link);
+            this.router.navigate(link);
+        }
+        else {
+            alert("false");
+        }
     };
     __decorate([
         core_1.Input(), 
@@ -33,7 +41,7 @@ var RegisterDetailComponent = (function () {
             selector: 'my-register-detail',
             templateUrl: "./app/register-detail.component.html"
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, User_Service_1.UserService])
     ], RegisterDetailComponent);
     return RegisterDetailComponent;
 }());

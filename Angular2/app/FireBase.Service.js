@@ -9,25 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var firebase = require('firebase');
+var angularfire2_1 = require('angularfire2');
 var FireBaseService = (function () {
-    function FireBaseService() {
+    function FireBaseService(af) {
+        this.af = af;
     }
-    FireBaseService.prototype.ngOnInit = function () {
-        var config = {
-            apiKey: "AIzaSyAo9jAlohHV2JucGtgV7r7BB1CPquJIQhg",
-            authDomain: "testapp-2493a.firebaseapp.com",
-            databaseURL: "https://testapp-2493a.firebaseio.com",
-            storageBucket: "testapp-2493a.appspot.com",
-        };
-        firebase.initializeApp(config);
-    };
     FireBaseService.prototype.ref = function (refto) {
-        return firebase.database().ref(refto);
+        return this.af.database.list(refto);
     };
     FireBaseService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [angularfire2_1.AngularFire])
     ], FireBaseService);
     return FireBaseService;
 }());

@@ -9,15 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var FireBase_Service_1 = require('./FireBase.Service');
+//import {FireBaseService} from './FireBase.Service';
+var angularfire2_1 = require('angularfire2');
 var UserService = (function () {
-    function UserService(fireservice) {
-        this.fireservice = fireservice;
-        this.users = fireservice.ref("users");
+    function UserService(af) {
+        this.af = af;
+        this.users = af.database.list('/users');
     }
+    //  getUsers(): User[] {
+    //}
+    //getUser(email:string):Promise<User> {
+    //alert("getUser "+email);
+    //return FirebaseListObservable.first(this.users,(user=>user.email===email));
+    //}
+    UserService.prototype.addUser = function (user) {
+        alert("addUser");
+        // Anonymous
+        this.af.auth.login({
+            provider: angularfire2_1.AuthProviders.Anonymous,
+            method: angularfire2_1.AuthMethods.Anonymous,
+        });
+        var returnVal = false;
+        this.af.auth.createUser({ email: user.email, password: user.password })
+            .then(function (fireauthstate) { console.log(JSON.stringify(fireauthstate)); returnVal = true; }, function (fireauthstate) { return console.log(JSON.stringify(fireauthstate)); })
+            .catch(function (fireauthstate) { return console.log(JSON.stringify(fireauthstate)); });
+        this.users.push(user);
+        alert(JSON.stringify(user));
+        //alert(JSON.stringify(this.users));
+        //const queryList = this.af.database.ref().child("users").orderByChild("email").equalTo(user.email);
+        //this.users.push(user);
+        //alert(JSON.stringify(this.users));
+        return returnVal;
+    };
     UserService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [FireBase_Service_1.FireBaseService])
+        __metadata('design:paramtypes', [angularfire2_1.AngularFire])
     ], UserService);
     return UserService;
 }());

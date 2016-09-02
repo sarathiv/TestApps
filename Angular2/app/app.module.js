@@ -16,6 +16,15 @@ var app_user_detail_component_1 = require('./app.user-detail.component');
 var login_detail_component_1 = require('./login-detail.component');
 var app_landing_component_1 = require('./app.landing.component');
 var app_routing_1 = require('./app.routing');
+var angularfire2_1 = require('angularfire2');
+var User_Service_1 = require('./User.Service');
+var FireBase_Service_1 = require('./FireBase.Service');
+var firebaseConfig = {
+    apiKey: "AIzaSyAo9jAlohHV2JucGtgV7r7BB1CPquJIQhg",
+    authDomain: "testapp-2493a.firebaseapp.com",
+    databaseURL: "https://testapp-2493a.firebaseio.com",
+    storageBucket: "testapp-2493a.appspot.com",
+};
 var AppModule = (function () {
     function AppModule() {
     }
@@ -23,11 +32,16 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                app_routing_1.routing],
+                app_routing_1.routing,
+                angularfire2_1.AngularFireModule.initializeApp(firebaseConfig)],
             declarations: [app_component_1.AppComponent,
                 app_landing_component_1.LandingComponent,
                 app_user_detail_component_1.UserDetailComponent,
                 login_detail_component_1.LoginDetailComponent
+            ],
+            providers: [
+                FireBase_Service_1.FireBaseService,
+                User_Service_1.UserService,
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

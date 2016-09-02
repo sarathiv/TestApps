@@ -1,1 +1,9 @@
+npm install
+npm install -g angular-cli@webpack 
+# or install locally
+npm install angular-cli@webpack --save-dev
+# make sure you have typings installed
+npm install -g typings 
 
+#npm install angularfire2 firebase --save
+npm start 
