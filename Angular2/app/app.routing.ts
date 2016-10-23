@@ -18,6 +18,10 @@ const appRoutes: Routes = [
     component: UserDetailComponent
   },
   {
+    path: 'user',
+    redirectTo: '/login'
+  },
+  {
     path: 'login',
     component: LoginDetailComponent
   },

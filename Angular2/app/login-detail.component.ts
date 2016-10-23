@@ -67,7 +67,11 @@ export class LoginDetailComponent {
 							this.error = new Error();
 							this.error.message = fireauthstate.message;
 						})
-					.catch(fireauthstate=>console.log(JSON.stringify(fireauthstate)));
+					.catch(fireauthstate=>{
+						    console.log(JSON.stringify(fireauthstate));
+							this.error = new Error();
+							this.error.message = JSON.stringify(fireauthstate);
+					});
 	}
 	else if(provider == "github")
 	{
@@ -89,7 +93,7 @@ export class LoginDetailComponent {
 							this.error = new Error();
 							this.error.message = fireauthstate.message;
 						})
-					.catch(fireauthstate=>console.log(JSON.stringify(fireauthstate)));
+					.catch(fireauthstate=>console.log("Error " + JSON.stringify(fireauthstate)));
 	}
   }
 }

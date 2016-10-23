@@ -8,4 +8,5 @@ export class User {
   mobile:string;
   isAdministrator: boolean;
   isLoggedIn: boolean;
+  carNumber:string;
 }

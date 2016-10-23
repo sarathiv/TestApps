@@ -18,6 +18,10 @@ var appRoutes = [
         component: app_user_detail_component_1.UserDetailComponent
     },
     {
+        path: 'user',
+        redirectTo: '/login'
+    },
+    {
         path: 'login',
         component: login_detail_component_1.LoginDetailComponent
     },

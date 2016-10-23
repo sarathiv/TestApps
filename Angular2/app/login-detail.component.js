@@ -60,7 +60,11 @@ var LoginDetailComponent = (function () {
                 _this.error = new error_1.Error();
                 _this.error.message = fireauthstate.message;
             })
-                .catch(function (fireauthstate) { return console.log(JSON.stringify(fireauthstate)); });
+                .catch(function (fireauthstate) {
+                console.log(JSON.stringify(fireauthstate));
+                _this.error = new error_1.Error();
+                _this.error.message = JSON.stringify(fireauthstate);
+            });
         }
         else if (provider == "github") {
             alert(provider);
@@ -77,7 +81,7 @@ var LoginDetailComponent = (function () {
                 _this.error = new error_1.Error();
                 _this.error.message = fireauthstate.message;
             })
-                .catch(function (fireauthstate) { return console.log(JSON.stringify(fireauthstate)); });
+                .catch(function (fireauthstate) { return console.log("Error " + JSON.stringify(fireauthstate)); });
         }
     };
     __decorate([

@@ -41,6 +41,46 @@ var UserService = (function () {
         //alert(JSON.stringify(this.users));
         return returnVal;
     };
+    UserService.prototype.insertUser = function (user) {
+        alert("insert User");
+        this.users.push(user);
+        console.log("Insert User:" + JSON.stringify(user));
+    };
+    UserService.prototype.getUser = function (email) {
+        var _this = this;
+        var currentUser = null;
+        //this.users.first((x, idx, obs)=>{
+        //  console.log(JSON.stringify(x) + "index is :" +idx);
+        //  });
+        var promise = new Promise(function (resolve, reject) {
+            console.log("get user email:" + email);
+            _this.users.forEach(function (items) {
+                items.forEach(function (item) {
+                    console.log("For each:" + JSON.stringify(item));
+                    if (item.email == email) {
+                        currentUser = item;
+                        console.log("Match in:" + JSON.stringify(item));
+                    }
+                });
+                resolve(currentUser);
+            });
+        });
+        return promise;
+    };
+    UserService.prototype.updateUser = function (user) {
+        console.log("updateUser:" + JSON.stringify(user));
+        //console.log("updateUser key:" + user.$key);
+        var key = "";
+        for (var x in user) {
+            if (x == "$key") {
+                key = user[x];
+                delete user[x];
+            }
+        }
+        console.log("updateUser key:" + key);
+        console.log("removed key:" + JSON.stringify(user));
+        this.users.update(key, user);
+    };
     UserService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [angularfire2_1.AngularFire])

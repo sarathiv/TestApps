@@ -4,5 +4,9 @@ import { Component } from '@angular/core';
   templateUrl: './app/header.html'
 })
 export class LandingComponent {
-isLoggedIn: boolean; 
+isLoggedIn: boolean;
+	constructor()
+	{
+		this.isLoggedIn = false;		
+	} 
 }
