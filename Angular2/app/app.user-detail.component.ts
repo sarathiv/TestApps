@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { User } from './user';
 import { UserService } from './User.Service';
 import { AngularFire,AuthProviders,AuthMethods} from 'angularfire2';
+import { Router } from '@angular/router';
 @Component({
   selector: 'my-user-detail',
   templateUrl: 'app/user-detail.component.html'
@@ -16,6 +17,7 @@ export class UserDetailComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
 	private af: AngularFire,
+  private router: Router,
   private userservice:UserService) {
   }
      ngOnInit(): void {
@@ -36,9 +38,14 @@ export class UserDetailComponent implements OnInit{
 	this.isLoggedIn = true;
 	this.editEnabled = false;
   }
+  
   goBack(): void {
-  this.af.auth.logout();
-    window.history.back();
+    console.log("Logging out..");
+    this.af.auth.logout();
+    console.log(" Done Logging out..");
+    let link = ['/login'];
+    this.router.navigate(link);
+
   }
 
   flipEdit():void {
@@ -62,6 +69,7 @@ export class UserDetailComponent implements OnInit{
      //});
      console.log("save:" + JSON.stringify(this.user));
      this.userservice.updateUser(this.user);
+     console.log("after Update:" + JSON.stringify(this.user));
      this.editEnabled = false;
   }
 }

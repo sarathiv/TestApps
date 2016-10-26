@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require("@angular/core");
-var angularfire2_1 = require("angularfire2");
+var core_1 = require('@angular/core');
+var angularfire2_1 = require('angularfire2');
 //import * as firebase from 'firebase';
-var angularfire2_2 = require("angularfire2");
+var angularfire2_2 = require('angularfire2');
 var UserService = (function () {
     function UserService(af, ref) {
         this.af = af;
@@ -102,13 +102,14 @@ var UserService = (function () {
         console.log("updateUser key:" + key);
         console.log("removed key:" + JSON.stringify(user));
         this.users.update(key, user);
+        user['$key'] = key;
     };
+    UserService = __decorate([
+        core_1.Injectable(),
+        __param(1, core_1.Inject(angularfire2_1.FirebaseRef)), 
+        __metadata('design:paramtypes', [angularfire2_2.AngularFire, Object])
+    ], UserService);
     return UserService;
 }());
-UserService = __decorate([
-    core_1.Injectable(),
-    __param(1, core_1.Inject(angularfire2_1.FirebaseRef)),
-    __metadata("design:paramtypes", [angularfire2_2.AngularFire, Object])
-], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=User.Service.js.map

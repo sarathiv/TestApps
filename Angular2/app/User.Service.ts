@@ -95,7 +95,6 @@ getUser(email):Promise<User> {
     console.log("updateUser:" + JSON.stringify(user));
     //console.log("updateUser key:" + user.$key);
     let key = "";
-
     for (var x in user)
     {
       if(x == "$key")
@@ -108,5 +107,6 @@ getUser(email):Promise<User> {
     console.log("updateUser key:" + key);
     console.log("removed key:" + JSON.stringify(user));
 		this.users.update(key,user);
+    user['$key'] = key;
 	}
 }
