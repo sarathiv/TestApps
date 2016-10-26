@@ -28,6 +28,7 @@ var UserDetailComponent = (function () {
             //	  .then(user => this.user = user);
             //alert(this.user);
             _this.userservice.getUser(email).then(function (dbUser) {
+                console.log("user detail user:" + JSON.stringify(dbUser));
                 _this.user = dbUser;
             });
             //this.user = new User();

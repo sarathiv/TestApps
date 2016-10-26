@@ -6,6 +6,7 @@ import { AppComponent }  from './app.component';
 import {UserDetailComponent} from './app.user-detail.component';
 import {LoginDetailComponent} from './login-detail.component';
 import {LandingComponent} from './app.landing.component';
+import {DashboardComponent} from './DashboardComponent';
 import { routing }        from './app.routing';
 import * as firebase from 'firebase';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -26,11 +27,12 @@ const  firebaseConfig = {
   declarations: [ AppComponent,
                   LandingComponent,
                   UserDetailComponent,
-                  LoginDetailComponent
+                  LoginDetailComponent,
+                  DashboardComponent
                 ],
 				providers: [
 				    FireBaseService,
-					UserService,
+					  UserService,
 				],
   bootstrap:    [ AppComponent ]
 })

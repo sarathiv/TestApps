@@ -8,13 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-//import {FireBaseService} from './FireBase.Service';
-var angularfire2_1 = require('angularfire2');
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var core_1 = require("@angular/core");
+var angularfire2_1 = require("angularfire2");
+//import * as firebase from 'firebase';
+var angularfire2_2 = require("angularfire2");
 var UserService = (function () {
-    function UserService(af) {
+    function UserService(af, ref) {
         this.af = af;
         this.users = af.database.list('/users');
+        this.reference = ref;
     }
     //  getUsers(): User[] {
     //}
@@ -26,8 +31,8 @@ var UserService = (function () {
         alert("addUser");
         // Anonymous
         this.af.auth.login({
-            provider: angularfire2_1.AuthProviders.Anonymous,
-            method: angularfire2_1.AuthMethods.Anonymous,
+            provider: angularfire2_2.AuthProviders.Anonymous,
+            method: angularfire2_2.AuthMethods.Anonymous,
         });
         var returnVal = false;
         this.af.auth.createUser({ email: user.email, password: user.password })
@@ -54,16 +59,33 @@ var UserService = (function () {
         //  });
         var promise = new Promise(function (resolve, reject) {
             console.log("get user email:" + email);
-            _this.users.forEach(function (items) {
-                items.forEach(function (item) {
-                    console.log("For each:" + JSON.stringify(item));
-                    if (item.email == email) {
-                        currentUser = item;
-                        console.log("Match in:" + JSON.stringify(item));
+            //this.users.forEach((items)=>{
+            //  items.forEach((item)=>{
+            //      console.log("For each:"+JSON.stringify(item));
+            //       if(item.email==email){
+            //           currentUser=item;
+            //           console.log("Match in:" + JSON.stringify(item));
+            //       }
+            //   });
+            //query:FirebaseObjectFactoryOpts;
+            //const query = this.reference.child('/users').orderByChild('email').equalTo(email);
+            var query = {
+                query: {
+                    orderByChild: "email",
+                    equalTo: email,
+                    limitToFirst: 1,
+                }
+            };
+            console.log("Query:" + JSON.stringify(query));
+            _this.af.database.list('/users', query).subscribe(function (user) {
+                if (user[0]) {
+                    if (user.length == 1) {
+                        console.log("Resolving with:" + JSON.stringify(user[0]));
+                        resolve(user[0]);
                     }
-                });
-                resolve(currentUser);
+                }
             });
+            //});
         });
         return promise;
     };
@@ -81,11 +103,12 @@ var UserService = (function () {
         console.log("removed key:" + JSON.stringify(user));
         this.users.update(key, user);
     };
-    UserService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [angularfire2_1.AngularFire])
-    ], UserService);
     return UserService;
 }());
+UserService = __decorate([
+    core_1.Injectable(),
+    __param(1, core_1.Inject(angularfire2_1.FirebaseRef)),
+    __metadata("design:paramtypes", [angularfire2_2.AngularFire, Object])
+], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=User.Service.js.map

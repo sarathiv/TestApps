@@ -1,0 +1,16 @@
+<div *ngIf="user">
+  <h1> Dash Board {{carNumber}}</h1>
+  <div>
+  <input [(ngModel)]="carNumber" type="string" class="form-control" id="txtcarNumber" placeholder="CarNumber" name="carNumber" required
+    />
+    <button (click)="refreshCar()" class="btn btn-default btn-block">Refresh</button>
+  </div>
+  <div id="cmds" class="dash" *ngIf="commandsWithData">
+    <div *ngFor="let command of commandsWithData | async">
+      <h2>{{command.$key}}</h2>
+      <div *ngFor="let value of command| objToArr">
+        <span class="badge">{{value.time}}</span> {{value.value}}
+      </div>
+    </div>
+  </div>
+</div>

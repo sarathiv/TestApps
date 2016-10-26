@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var ObjToArr_1 = require('./ObjToArr');
 //import * as firebase from 'firebase';
 var AppComponent = (function () {
     function AppComponent() {
@@ -17,7 +18,8 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<my-landing>header Loading </my-landing>\n  "
+            template: "<my-landing>header Loading </my-landing>\n  ",
+            pipes: [ObjToArr_1.ObjToArr]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

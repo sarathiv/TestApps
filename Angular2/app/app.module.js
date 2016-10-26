@@ -15,6 +15,7 @@ var app_component_1 = require('./app.component');
 var app_user_detail_component_1 = require('./app.user-detail.component');
 var login_detail_component_1 = require('./login-detail.component');
 var app_landing_component_1 = require('./app.landing.component');
+var DashboardComponent_1 = require('./DashboardComponent');
 var app_routing_1 = require('./app.routing');
 var angularfire2_1 = require('angularfire2');
 var User_Service_1 = require('./User.Service');
@@ -37,7 +38,8 @@ var AppModule = (function () {
             declarations: [app_component_1.AppComponent,
                 app_landing_component_1.LandingComponent,
                 app_user_detail_component_1.UserDetailComponent,
-                login_detail_component_1.LoginDetailComponent
+                login_detail_component_1.LoginDetailComponent,
+                DashboardComponent_1.DashboardComponent
             ],
             providers: [
                 FireBase_Service_1.FireBaseService,

@@ -27,6 +27,7 @@ export class UserDetailComponent implements OnInit{
 	//	  .then(user => this.user = user);
 		  //alert(this.user);
       this.userservice.getUser(email).then(dbUser=>{
+          console.log("user detail user:"+JSON.stringify(dbUser));
           this.user = dbUser;
       });
       //this.user = new User();

@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable,Inject } from '@angular/core';
+import {FirebaseRef} from 'angularfire2';
 import { User } from './user';
-//import {FireBaseService} from './FireBase.Service';
+//import * as firebase from 'firebase';
+
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable , AuthProviders, AuthMethods } from 'angularfire2';
 @Injectable()
 export class UserService {
-users: FirebaseListObservable<any>;
-constructor(private af: AngularFire) {
+users: FirebaseListObservable<any[]>;
+reference:any;
+constructor(private af: AngularFire,@Inject(FirebaseRef) ref: any) {
      this.users = af.database.list('/users');
+     this.reference = ref;
  }
   //  getUsers(): User[] {
 
@@ -52,16 +56,37 @@ getUser(email):Promise<User> {
   //  });
  let promise = new Promise<User>((resolve,reject)=>{
     console.log("get user email:"+email);
-    this.users.forEach((items)=>{
-      items.forEach((item)=>{
-        console.log("For each:"+JSON.stringify(item));
-         if(item.email==email){
-             currentUser=item;
-             console.log("Match in:" + JSON.stringify(item));
-         }
-     });
-     resolve(currentUser);
-    });
+    //this.users.forEach((items)=>{
+   //  items.forEach((item)=>{
+  //      console.log("For each:"+JSON.stringify(item));
+  //       if(item.email==email){
+  //           currentUser=item;
+  //           console.log("Match in:" + JSON.stringify(item));
+  //       }
+  //   });
+  //query:FirebaseObjectFactoryOpts;
+   //const query = this.reference.child('/users').orderByChild('email').equalTo(email);
+     let query = {
+       query: {
+         orderByChild: "email",
+         equalTo: email,
+         limitToFirst: 1,
+       }
+       };
+       console.log("Query:"+JSON.stringify(query));
+       this.af.database.list('/users',query).subscribe(user=>
+         {
+           if(user[0])
+           {
+             if(user.length ==1)
+             {
+               console.log("Resolving with:" + JSON.stringify(user[0]));
+               resolve(user[0]);
+             }
+          }
+        });
+
+    //});
   });
   return promise;
 }
