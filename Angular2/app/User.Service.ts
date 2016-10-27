@@ -22,7 +22,7 @@ constructor(private af: AngularFire,@Inject(FirebaseRef) ref: any) {
     //}
 
 	addUser(user:User):Boolean {
-	   alert("addUser");
+	   console.log(" Entered addUser");
 	   // Anonymous
 	this.af.auth.login({
 		provider: AuthProviders.Anonymous,
@@ -35,7 +35,7 @@ constructor(private af: AngularFire,@Inject(FirebaseRef) ref: any) {
 					fireauthstate=>console.log(JSON.stringify(fireauthstate)))
 					.catch(fireauthstate=>console.log(JSON.stringify(fireauthstate)));
 	   this.users.push(user);
-	   alert(JSON.stringify(user));
+	   console.log("Pushed user :" + JSON.stringify(user));
 	   //alert(JSON.stringify(this.users));
 	//const queryList = this.af.database.ref().child("users").orderByChild("email").equalTo(user.email);
 	//this.users.push(user);
@@ -44,9 +44,9 @@ constructor(private af: AngularFire,@Inject(FirebaseRef) ref: any) {
 	}
 
 insertUser(user:User):void{
-  alert("insert User");
+  console.log("In insert User");
   this.users.push(user);
-  console.log("Insert User:"+JSON.stringify(user));
+  console.log("Inserted User:"+JSON.stringify(user));
 }
 
 getUser(email):Promise<User> {

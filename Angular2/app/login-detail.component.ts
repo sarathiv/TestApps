@@ -20,12 +20,12 @@ export class LoginDetailComponent {
   }
   login(provider?:string)
   {
-    alert(JSON.stringify(this.user) + "provider is:" + provider);
-    
+    console.log(JSON.stringify(this.user) + "provider is:" + provider);
+
 	// Email and password
 	if(provider == "email")
 	{
-	    alert(provider);
+	    console.log("In provider:" + provider);
 		this.af.auth.login({ email: this.user.email, password: this.user.password },
 							{provider: AuthProviders.Password,
 						   method: AuthMethods.Password}
@@ -49,7 +49,7 @@ export class LoginDetailComponent {
 											});
 	}else if(provider == "google")
 	{
-		alert(provider);
+		console.log("In provider "+provider);
 		this.af.auth.login(
 							{provider: AuthProviders.Google,
 						   method: AuthMethods.Popup}
@@ -59,7 +59,7 @@ export class LoginDetailComponent {
 						                this.user.email=fireauthstate.auth.email;
 										let link = ['/user', this.user.email];
 										console.log(JSON.stringify(fireauthstate))
-										alert(link);
+										console.log("Will navigate to"+link);
 										this.router.navigate(link);
 										},
 						fireauthstate=>{
@@ -75,7 +75,7 @@ export class LoginDetailComponent {
 	}
 	else if(provider == "github")
 	{
-		alert(provider);
+		console.log("In provider:"+provider);
 		this.af.auth.login(
 							{provider: AuthProviders.Github,
 						   method: AuthMethods.Popup}
@@ -85,7 +85,7 @@ export class LoginDetailComponent {
 						                this.user.email=fireauthstate.auth.email;
 										let link = ['/user', this.user.email];
 										console.log(JSON.stringify(fireauthstate))
-										alert(link);
+										console.log("In provider:"+link);
 										this.router.navigate(link);
 										},
 						fireauthstate=>{

@@ -28,7 +28,7 @@ var UserService = (function () {
     //return FirebaseListObservable.first(this.users,(user=>user.email===email));
     //}
     UserService.prototype.addUser = function (user) {
-        alert("addUser");
+        console.log(" Entered addUser");
         // Anonymous
         this.af.auth.login({
             provider: angularfire2_2.AuthProviders.Anonymous,
@@ -39,7 +39,7 @@ var UserService = (function () {
             .then(function (fireauthstate) { console.log(JSON.stringify(fireauthstate)); returnVal = true; }, function (fireauthstate) { return console.log(JSON.stringify(fireauthstate)); })
             .catch(function (fireauthstate) { return console.log(JSON.stringify(fireauthstate)); });
         this.users.push(user);
-        alert(JSON.stringify(user));
+        console.log("Pushed user :" + JSON.stringify(user));
         //alert(JSON.stringify(this.users));
         //const queryList = this.af.database.ref().child("users").orderByChild("email").equalTo(user.email);
         //this.users.push(user);
@@ -47,9 +47,9 @@ var UserService = (function () {
         return returnVal;
     };
     UserService.prototype.insertUser = function (user) {
-        alert("insert User");
+        console.log("In insert User");
         this.users.push(user);
-        console.log("Insert User:" + JSON.stringify(user));
+        console.log("Inserted User:" + JSON.stringify(user));
     };
     UserService.prototype.getUser = function (email) {
         var _this = this;

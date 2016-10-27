@@ -24,7 +24,7 @@ export class UserDetailComponent implements OnInit{
     this.route.params.forEach((params: Params) => {
 
       let email = params['email'];
-	  alert(email);
+	  console.log("email in on app user detail nginit:"+email);
       //this.userservice.getUser(email)
 	//	  .then(user => this.user = user);
 		  //alert(this.user);
@@ -38,7 +38,7 @@ export class UserDetailComponent implements OnInit{
 	this.isLoggedIn = true;
 	this.editEnabled = false;
   }
-  
+
   goBack(): void {
     console.log("Logging out..");
     this.af.auth.logout();

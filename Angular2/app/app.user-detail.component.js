@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var user_1 = require("./user");
-var User_Service_1 = require("./User.Service");
-var angularfire2_1 = require("angularfire2");
-var router_2 = require("@angular/router");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var user_1 = require('./user');
+var User_Service_1 = require('./User.Service');
+var angularfire2_1 = require('angularfire2');
+var router_2 = require('@angular/router');
 var UserDetailComponent = (function () {
     function UserDetailComponent(route, af, router, userservice) {
         this.route = route;
@@ -25,7 +25,7 @@ var UserDetailComponent = (function () {
         var _this = this;
         this.route.params.forEach(function (params) {
             var email = params['email'];
-            alert(email);
+            console.log("email in on app user detail nginit:" + email);
             //this.userservice.getUser(email)
             //	  .then(user => this.user = user);
             //alert(this.user);
@@ -69,21 +69,18 @@ var UserDetailComponent = (function () {
         console.log("after Update:" + JSON.stringify(this.user));
         this.editEnabled = false;
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', user_1.User)
+    ], UserDetailComponent.prototype, "user", void 0);
+    UserDetailComponent = __decorate([
+        core_1.Component({
+            selector: 'my-user-detail',
+            templateUrl: 'app/user-detail.component.html'
+        }), 
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, angularfire2_1.AngularFire, router_2.Router, User_Service_1.UserService])
+    ], UserDetailComponent);
     return UserDetailComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", user_1.User)
-], UserDetailComponent.prototype, "user", void 0);
-UserDetailComponent = __decorate([
-    core_1.Component({
-        selector: 'my-user-detail',
-        templateUrl: 'app/user-detail.component.html'
-    }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute,
-        angularfire2_1.AngularFire,
-        router_2.Router,
-        User_Service_1.UserService])
-], UserDetailComponent);
 exports.UserDetailComponent = UserDetailComponent;
 //# sourceMappingURL=app.user-detail.component.js.map

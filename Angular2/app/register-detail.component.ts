@@ -20,16 +20,16 @@ export class RegisterDetailComponent {
 
   register()
   {
-    alert(JSON.stringify(this.user));
+    console.log("register user:"+JSON.stringify(this.user));
     let link = ['/user', this.user.email];
     if(this.userservice.addUser(this.user))
 	{
-		alert("true");
-		alert(link);
+		console.log("addUser returned true");
+		console.log("navigating to "+link);
 		this.router.navigate(link);
 	}else{
-		alert("false");
+		console.log(" add user returned false");
 	}
-	
+
   }
 }

@@ -18,9 +18,9 @@ export class DashboardComponent implements OnInit{
  constructor(
     private route: ActivatedRoute,
     private router: Router,
-	private af: AngularFire,
-  private userservice:UserService) {
-    this.carNumber="Empty";
+	  private af: AngularFire,
+    private userservice:UserService) {
+      this.carNumber="Empty";
   }
 
   ngOnInit(): void {

@@ -23,10 +23,10 @@ var LoginDetailComponent = (function () {
     }
     LoginDetailComponent.prototype.login = function (provider) {
         var _this = this;
-        alert(JSON.stringify(this.user) + "provider is:" + provider);
+        console.log(JSON.stringify(this.user) + "provider is:" + provider);
         // Email and password
         if (provider == "email") {
-            alert(provider);
+            console.log("In provider:" + provider);
             this.af.auth.login({ email: this.user.email, password: this.user.password }, { provider: angularfire2_1.AuthProviders.Password,
                 method: angularfire2_1.AuthMethods.Password })
                 .then(function (fireauthstate) {
@@ -46,14 +46,14 @@ var LoginDetailComponent = (function () {
             });
         }
         else if (provider == "google") {
-            alert(provider);
+            console.log("In provider " + provider);
             this.af.auth.login({ provider: angularfire2_1.AuthProviders.Google,
                 method: angularfire2_1.AuthMethods.Popup })
                 .then(function (fireauthstate) {
                 _this.user.email = fireauthstate.auth.email;
                 var link = ['/user', _this.user.email];
                 console.log(JSON.stringify(fireauthstate));
-                alert(link);
+                console.log("Will navigate to" + link);
                 _this.router.navigate(link);
             }, function (fireauthstate) {
                 console.log("test " + JSON.stringify(fireauthstate));
@@ -67,14 +67,14 @@ var LoginDetailComponent = (function () {
             });
         }
         else if (provider == "github") {
-            alert(provider);
+            console.log("In provider:" + provider);
             this.af.auth.login({ provider: angularfire2_1.AuthProviders.Github,
                 method: angularfire2_1.AuthMethods.Popup })
                 .then(function (fireauthstate) {
                 _this.user.email = fireauthstate.auth.email;
                 var link = ['/user', _this.user.email];
                 console.log(JSON.stringify(fireauthstate));
-                alert(link);
+                console.log("In provider:" + link);
                 _this.router.navigate(link);
             }, function (fireauthstate) {
                 console.log("test " + JSON.stringify(fireauthstate));
