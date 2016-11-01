@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ObjToArr_1 = require('./ObjToArr');
+var ThousandTimes_1 = require('./ThousandTimes');
 //import * as firebase from 'firebase';
 var AppComponent = (function () {
     function AppComponent() {
@@ -19,7 +20,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             template: "<my-landing>header Loading </my-landing>\n  ",
-            pipes: [ObjToArr_1.ObjToArr]
+            pipes: [ObjToArr_1.ObjToArr, ThousandTimes_1.ThousandTimes]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
