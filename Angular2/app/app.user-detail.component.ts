@@ -23,7 +23,26 @@ export class UserDetailComponent implements OnInit{
      ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
 
-      let email = params['email'];
+    let email = params['email'];
+    if(!email)
+    {
+      console.log("No email in parameter hence will get it from auth");
+      if(this.af.auth.getAuth())
+      {
+        email = this.af.auth.getAuth().auth.email;
+      }else
+      {
+        console.log("Authentication is null.");
+      }
+    }
+
+    if(!email)
+    {
+      console.log("email is null hence will forward to login.");
+      let link = ['/login'];
+      this.router.navigate(link);
+    }
+
 	  console.log("email in on app user detail nginit:"+email);
       //this.userservice.getUser(email)
 	//	  .then(user => this.user = user);

@@ -25,6 +25,20 @@ var UserDetailComponent = (function () {
         var _this = this;
         this.route.params.forEach(function (params) {
             var email = params['email'];
+            if (!email) {
+                console.log("No email in parameter hence will get it from auth");
+                if (_this.af.auth.getAuth()) {
+                    email = _this.af.auth.getAuth().auth.email;
+                }
+                else {
+                    console.log("Authentication is null.");
+                }
+            }
+            if (!email) {
+                console.log("email is null hence will forward to login.");
+                var link = ['/login'];
+                _this.router.navigate(link);
+            }
             console.log("email in on app user detail nginit:" + email);
             //this.userservice.getUser(email)
             //	  .then(user => this.user = user);

@@ -76,9 +76,9 @@ getUser(email):Promise<User> {
        console.log("Query:"+JSON.stringify(query));
        this.af.database.list('/users',query).subscribe(user=>
          {
-           if(user[0])
+           if(user && user.length ==1)
            {
-             if(user.length ==1)
+             if(user[0])
              {
                console.log("Resolving with:" + JSON.stringify(user[0]));
                resolve(user[0]);

@@ -9,7 +9,7 @@
     <div *ngFor="let command of commandsWithData | async">
       <h2>{{command.$key}}</h2>
       <div *ngFor="let value of command| objToArr">
-        <span class="badge">{{value.time}}</span> {{value.value}}
+        <span class="badge">{{value.time| date:'yyyy-MM-dd HH:mm:ss Z'}}</span> {{value.value}}
       </div>
     </div>
   </div>

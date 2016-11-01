@@ -34,7 +34,7 @@ export class LoginDetailComponent {
 						fireauthstate=>{
 										let link = ['/user', this.user.email];
 										console.log(JSON.stringify(fireauthstate));
-										alert(link);
+										//alert(link);
 										this.router.navigate(link);
 										},
 						fireauthstate=>{

@@ -20,7 +20,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'user',
-    redirectTo: '/login'
+    component: UserDetailComponent
   },
   {
     path: 'login',

@@ -78,8 +78,8 @@ var UserService = (function () {
             };
             console.log("Query:" + JSON.stringify(query));
             _this.af.database.list('/users', query).subscribe(function (user) {
-                if (user[0]) {
-                    if (user.length == 1) {
+                if (user && user.length == 1) {
+                    if (user[0]) {
                         console.log("Resolving with:" + JSON.stringify(user[0]));
                         resolve(user[0]);
                     }

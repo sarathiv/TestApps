@@ -20,7 +20,7 @@ var appRoutes = [
     },
     {
         path: 'user',
-        redirectTo: '/login'
+        component: app_user_detail_component_1.UserDetailComponent
     },
     {
         path: 'login',
